@@ -1,0 +1,88 @@
+.form-container {
+  position: relative;
+  margin: 2em auto;
+  width: 28em;
+}
+
+.form-container .field {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea {
+    border: none;
+    border-bottom: .3em solid #333;
+    border-radius: .25em;
+    padding: .3em;
+    font-size: 1.5em;
+    width: 100%;
+    margin: .2em 0 0;
+  }
+  textarea {
+    height: 4em;
+    resize: none;
+  }
+  label {
+    margin: 2em 0 .3em;
+  }
+  .button,
+  button,
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"] {
+    margin: 1em 0;
+  }
+  .colorpicker {
+    margin: .5em 0 0;
+  }
+  canvas {
+    width: 465px;
+    height: 210px;
+    border-radius: 0 0 .4em .4em;
+  }
+  .current-color {
+    width: 465px;
+    height: 50px;
+    background: #bbb;
+    border-radius: .4em .4em 0 0;
+  }
+  .picker-instructions {
+      background-color: rgba(255,255,255,.6);
+      color: #333;
+      font-size: .9em;
+      text-align: center;
+      position: relative;
+      top: 13px;
+      margin: 0 auto;
+      padding: 5px 6px;
+      width: 230px;
+      border-radius: .4em;
+    }
+}
+
+.room-url-field {
+  margin: .5em 0;
+}
+
+.room-url-label {
+  font-size: 1em;
+  float: left;
+  margin: .4em 0;
+}
+
+input.room-url-form {
+  border: none;
+  border-bottom: .15em dashed #aaa;
+  padding: .25em .1em .05em;
+  font-size: 1em;
+  width: 190px;
+  background: transparent;
+  color: #333;
+}
+
+a.cancel-form {
+  margin: 0 .5em;
+  &:hover, &:focus {
+  }
+  &:active {
+  }
+}
