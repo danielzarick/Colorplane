@@ -1,0 +1,44 @@
+.container {
+  width: 480px;
+  margin: 5em auto;
+}
+
+.colorplane-colors-hex {
+  width: 50%;
+  margin: 0 auto;
+}
+
+p {
+
+}
+
+.colorplane {
+  margin: 1em auto;
+  width: 465px;
+}
+
+#colorplane-selected-color {
+  width: 480px;
+  height: 50px;
+  background: #33cc77;
+  border-radius: .4em .4em 0 0;
+}
+
+canvas#colorplane-canvas {
+  width: 480px;
+  height: 220px;
+  border-radius: 0 0 .4em .4em;
+}
+
+.colorplane-instructions {
+  background-color: rgba(255,255,255,.6);
+  color: #333;
+  font-size: .9em;
+  text-align: center;
+  position: relative;
+  top: 13px;
+  margin: 0 auto;
+  padding: 5px 6px;
+  width: 230px;
+  border-radius: .4em;
+}

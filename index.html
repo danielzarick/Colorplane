@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= full_title(yield(:title)) %></title>
+  <title>Colorplane - a basic, beautiful color picker</title>
   <meta name="author" content="33cc77 - Daniel Zarick">
-  <meta name="description" content="Conversations with like-minded people.">
+  <meta name="description" content="Colorplane - a basic, beautiful color picker.">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
-  <script src="/js/colorpicker.js" type="text/javascript"></script>
-  <link href="/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="js/colorplane.js" type="text/javascript"></script>
+  <link href="css/styles.css" media="all" rel="stylesheet" type="text/css" />
 
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,19 +17,21 @@
 <body>
 
   <div class="container">
-    <div class="field">
-      <label>Your profile color
-        <textfield id="color-field"></textfield>
-      </label>
+    <h1>COLORPLANE</h1>
 
-      <div class="colorpicker">
-        <div class="current-color">
-          <div class="picker-instructions">Click to select a color.</div>
-        </div>
-        <canvas id="picker"></canvas>
-      </div>
+
+    <div class="colorplane-colors-hex">
+      <p>Current color: <span id="colorplane-current-hex">NONE</span></p>
+      <p>Selected color: <span id="colorplane-selected-hex">NONE</span></p>
     </div>
-  </div>
 
+    <div class="colorplane">
+      <div id="colorplane-selected-color">
+        <div class="colorplane-instructions">Click to select a color.</div>
+      </div>
+      <canvas id="colorplane-canvas"></canvas>
+    </div>
+
+  </div>
 </body>
 </html>
