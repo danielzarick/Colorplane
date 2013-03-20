@@ -17,7 +17,7 @@ p {
   width: 465px;
 }
 
-#colorplane-selected-color {
+.colorplane-selected-color {
   width: 480px;
   height: 50px;
   background: #33cc77;
@@ -27,6 +27,7 @@ p {
 canvas#colorplane-canvas {
   width: 480px;
   height: 220px;
+  background: #33cc77;
   border-radius: 0 0 .4em .4em;
 }
 
