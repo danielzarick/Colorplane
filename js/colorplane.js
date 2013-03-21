@@ -1,6 +1,6 @@
 // *********************************
 //
-//   COLORPLANE - BY DANIEL ZARICK
+//   Colorplane - by Daniel Zarick
 //   for more: http://33cc77.com
 //
 // *********************************
@@ -8,13 +8,15 @@
 $(function(){
     var canvas = document.getElementById('colorplane-canvas');
     var ctx = canvas.getContext('2d');
+    var canvasWidth = canvas.width;
+    var canvasHeight = canvas.height;
 
     // Set the default color for #colorplane-selected-color in your CSS or
     // with a variable in your view template. Use this to match your brand
     // or to fill it in with the already stored color.
     var bkgndColor = $('.colorplane-selected-color').css("background-color");
     ctx.fillStyle = bkgndColor;
-    ctx.fillRect(0,0,460,220);
+    ctx.fillRect(0,0,canvasWidth,canvasHeight);
 
     // Simplistic implementation to get the 'touchmove' event on a touchscreen
     $('#colorplane-canvas').bind('touchmove', function(e) {
@@ -60,7 +62,7 @@ $(function(){
 
     function showHexColor(hexColor) {
         ctx.fillStyle = hexColor;
-        ctx.fillRect(0,0,460,220);
+        ctx.fillRect(0,0,canvasWidth,canvasHeight);
         $('#colorplane-current-hex').html(hexColor);
         $('#colorplane-current-hex').css("color", hexColor);
     }

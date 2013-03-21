@@ -1,6 +1,6 @@
-.logo {
-  margin: 2em 0 1em;
-}
+/*
+    Colorplane styles
+*/
 
 .colorplane-hex {
 
@@ -17,14 +17,14 @@
 }
 
 .colorplane-selected-color {
-  width: 460px;
+  width: 100%;
   height: 50px;
   background: #33cc77;
   border-radius: .4em .4em 0 0;
 }
 
 canvas#colorplane-canvas {
-  width: 460px;
+  width: 100%;
   height: 220px;
   background: #33cc77;
   border-radius: 0 0 .4em .4em;
@@ -36,11 +36,19 @@ canvas#colorplane-canvas {
   font-size: .9em;
   text-align: center;
   position: relative;
-  top: 13px;
+  top: 11px;
   margin: 0 auto;
   padding: 5px 6px 3px;
   width: 160px;
   border-radius: .4em;
+}
+
+/*
+    Demo page styles
+*/
+
+.logo {
+  margin: 2em 0 1em;
 }
 
 footer {
