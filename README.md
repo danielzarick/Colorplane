@@ -1,11 +1,10 @@
 ![Colorplane logo](http://33cc77.com/tools/colorplane/img/colorplane-header.png)
 
-#### Only a handful of humans understand RGB, CMYK, and HEX.
-
+Only a handful of humans understand RGB, CMYK, and HEX.
 We built a color picker for everybody else.
 
 ## Demo
-(Click here to see the demo)[http://33cc77.com/tools/colorplane]
+[http://33cc77.com/tools/colorplane](http://33cc77.com/tools/colorplane)
 
 ## Examples
 
@@ -20,8 +19,7 @@ Writers on Svbtle choose a color to represent their profile. In the past, writer
 ****************************************
 
 ### Made by:
-[33cc77](http://33cc77.com)
-![33cc77 logo](http://33cc77.com/tools/colorplane/img/33cc77-logo-hover.png)
+[![33cc77 logo](http://33cc77.com/tools/colorplane/img/33cc77-logo-hover.png)](http://33cc77.com)
 
 ****************************************
 
