@@ -1,31 +1,30 @@
-.container {
-  width: 480px;
-  margin: 5em auto;
+.logo {
+  margin: 2em 0 1em;
 }
 
-.colorplane-colors-hex {
-  width: 50%;
-  margin: 0 auto;
+.colorplane-hex {
+
 }
 
-p {
-
+.colorplane-hex-color {
+  font-weight: bold;
+  color: #bbb;
 }
 
 .colorplane {
-  margin: 1em auto;
+  margin: 1em 0;
   width: 465px;
 }
 
 .colorplane-selected-color {
-  width: 480px;
+  width: 460px;
   height: 50px;
   background: #33cc77;
   border-radius: .4em .4em 0 0;
 }
 
 canvas#colorplane-canvas {
-  width: 480px;
+  width: 460px;
   height: 220px;
   background: #33cc77;
   border-radius: 0 0 .4em .4em;
@@ -39,7 +38,20 @@ canvas#colorplane-canvas {
   position: relative;
   top: 13px;
   margin: 0 auto;
-  padding: 5px 6px;
-  width: 230px;
+  padding: 5px 6px 3px;
+  width: 160px;
   border-radius: .4em;
+}
+
+footer {
+  margin: 3em auto;
+  width: 25%;
+  font-weight: bold;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+footer img {
+  width: 3.5em;
+  margin: .35em 0 0;
 }

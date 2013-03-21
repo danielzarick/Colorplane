@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Colorplane - a basic, beautiful color picker</title>
+  <title>Colorplane - a simple, beautiful color picker</title>
   <meta name="author" content="33cc77 - Daniel Zarick">
   <meta name="description" content="Colorplane - a basic, beautiful color picker.">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
   <script src="js/colorplane.js" type="text/javascript"></script>
-  <link href="css/styles.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../css/33cc77-skeleton.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="css/colorplane-styles.css" media="all" rel="stylesheet" type="text/css" />
 
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,13 +18,20 @@
 <body>
 
   <div class="container">
-    <h1>COLORPLANE</h1>
+  <div class="eight columns offset-by-four">
 
-
-    <div class="colorplane-colors-hex">
-      <p>Current color: <span id="colorplane-current-hex">NONE</span></p>
-      <p>Selected color: <span id="colorplane-selected-hex">NONE</span></p>
+    <div class="logo">
+      <img src="img/colorplane-header.png" />
     </div>
+
+    <p>Most humans don't care about RGB, CMYK, opacity, or HEX colors. So why are you building interfaces which ask them for those?</p>
+
+    <hr />
+
+    <ul class="colorplane-hex">
+      <li class="">Current: <span class="colorplane-hex-color" id="colorplane-current-hex">pick one</span></li>
+      <li class="">Selected: <span class="colorplane-hex-color" id="colorplane-selected-hex">pick one</span></li>
+    </ul>
 
     <div class="colorplane">
       <div class="colorplane-selected-color">
@@ -32,6 +40,26 @@
       <canvas id="colorplane-canvas"></canvas>
     </div>
 
+    Download it here: <a href="http://github.com/33cc77/colorplane">Colorplane on Github</a>
+
+    <hr />
+
+    <h3>Examples</h3>
+    <h5>Green Room</h5>
+    <h6 class="subheader"><a href="http://green.33cc77.com">(green.33cc77.com)</a></h6>
+    <img src="img/colorplane-greenroom.png" />
+
+    <h5>Svbtle</h5>
+    <h6 class="subheader"><a href="http://svbtle.com">(svbtle.com)</a></h6>
+    <img src="img/colorplane-svbtle.png" />
+
+    <hr />
+
+    <footer>
+      Made by: <a href="http://33cc77.com"><img src="../../images/33cc77-logo-hover.png" /></a>
+    </footer>
+
+  </div>
   </div>
 </body>
 </html>

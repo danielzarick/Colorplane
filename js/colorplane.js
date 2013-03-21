@@ -14,7 +14,7 @@ $(function(){
     // or to fill it in with the already stored color.
     var bkgndColor = $('.colorplane-selected-color').css("background-color");
     ctx.fillStyle = bkgndColor;
-    ctx.fillRect(0,0,480,220);
+    ctx.fillRect(0,0,460,220);
 
     // Simplistic implementation to get the 'touchmove' event on a touchscreen
     $('#colorplane-canvas').bind('touchmove', function(e) {
@@ -60,7 +60,7 @@ $(function(){
 
     function showHexColor(hexColor) {
         ctx.fillStyle = hexColor;
-        ctx.fillRect(0,0,480,220);
+        ctx.fillRect(0,0,460,220);
         $('#colorplane-current-hex').html(hexColor);
         $('#colorplane-current-hex').css("color", hexColor);
     }
@@ -73,7 +73,7 @@ $(function(){
         $('#colorplane-selected-hex').html(hexColor);
         $('#colorplane-selected-hex').css("color", hexColor);
         $('.colorplane-selected-color').css("background", hexColor);
-        $('.picker-instructions').html("Color selected!");
+        $('.colorplane-instructions').html("Color selected!");
     }
 
     // This insures that all values are acceptable for a HEX code
