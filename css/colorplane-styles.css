@@ -52,6 +52,7 @@ canvas#colorplane-canvas {
   background-color: rgba(255,255,255,.6);
   color: #333;
   font-size: .75em;
+  font-weight: bold;
   text-align: center;
   position: relative;
   top: 11px;
