@@ -3,6 +3,10 @@
 */
 
 .colorplane-hex {
+  margin: 1em 0;
+}
+
+.colorplane-hex li {
 
 }
 
@@ -30,6 +34,20 @@ canvas#colorplane-canvas {
   border-radius: 0 0 .4em .4em;
 }
 
+@media only screen and (max-width: 479px) {
+
+  .colorplane-selected-color {
+    width: 300px;
+    height: 50px;
+  }
+
+  canvas#colorplane-canvas {
+    width: 300px;
+    height: 180px;
+  }
+
+}
+
 .colorplane-instructions {
   background-color: rgba(255,255,255,.6);
   color: #333;
@@ -51,9 +69,9 @@ canvas#colorplane-canvas {
   margin: 2em 0 1em;
 }
 
-.lede {
-  font-size: 2.225em;
-  line-height: 1.5em;
+.description {
+  font-size: 1.55em;
+  line-height: 1.125em;
 }
 
 footer {

@@ -1,13 +1,13 @@
 ![Colorplane logo](http://33cc77.com/tools/colorplane/img/colorplane-header.png)
 
-Only a handful of humans understand RGB, CMYK, and HEX.
-We built a color picker for everybody else.
+Most people can't grasp RGB, CMYK, & HEX.
+This color picker is for them.
 
 ## Demo
 [http://33cc77.com/tools/colorplane](http://33cc77.com/tools/colorplane)
 
-## Dependencies
-jQuery & that's all!
+## Dependency
+jQuery (but you can easily edit it to use another library)
 
 ## Examples
 
