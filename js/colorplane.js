@@ -35,7 +35,7 @@ $(function(){
     // This gets the mouse location (hopefully that is obvious)
     $('#colorplane-canvas').mousemove(function(e) {
         var hexColor = getHexColor(e);
-        $(this).showHexColor(hexColor);
+        showHexColor(hexColor);
 
         $('#colorplane-canvas').click(function() {
             saveCurrentColor(hexColor);
@@ -43,24 +43,25 @@ $(function(){
     });
 
     // This accepts the mouse or touch location and shows the current color based on X,Y coordinates
-    getHexColor: function(e) {
+    function getHexColor(e) {
         var canvasOffset = $(canvas).offset();
         var X = e.pageX - canvasOffset.left;
         var Y = e.pageY - canvasOffset.top;
 
-        var canvasX = Math.floor(X);
+        // Divide X by 2 because the canvas is so wide. Play with these values if you want.
+        var canvasX = Math.floor(X/2);
         var canvasY = Math.floor(Y);
         var canvasZ = parseInt(canvasX.toString().slice(0,2)) + parseInt(canvasY.toString().slice(0,2));
 
-        var redHex = normalizeHex(Math.floor(canvasX/2));
-        var greenHex = normalizeHex(canvasY);
-        var blueHex = normalizeHex(canvasZ);
+        var red = normalizeHex(canvasX);
+        var green = normalizeHex(canvasY);
+        var blue = normalizeHex(canvasZ);
 
-        var hexColor = "#" + redHex + greenHex + blueHex;
+        var hexColor = "#" + red + green + blue;
         return hexColor;
     }
 
-    showHexColor: function(hexColor) {
+    function showHexColor(hexColor) {
         ctx.fillStyle = hexColor;
         ctx.fillRect(0,0,canvasWidth,canvasHeight);
         $('#colorplane-current-hex').html(hexColor);
@@ -71,7 +72,7 @@ $(function(){
     // to match the form field where you want the user to input a HEX color
     // For best results, hide the form field from the user so all they see
     // is the color that they have selected.
-    saveCurrentColor: function(hexColor) {
+    function saveCurrentColor(hexColor) {
         $('#colorplane-selected-hex').html(hexColor);
         $('#colorplane-selected-hex').css("color", hexColor);
         $('.colorplane-selected-color').css("background", hexColor);
@@ -79,7 +80,7 @@ $(function(){
     }
 
     // This insures that all values are acceptable for a HEX code
-    normalizeHex: function(value) {
+    function normalizeHex(value) {
         var hexLetters = { "10": "A",
                         "11": "B",
                         "12": "C",
