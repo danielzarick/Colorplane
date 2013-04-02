@@ -35,7 +35,7 @@ $(function(){
     // This gets the mouse location (hopefully that is obvious)
     $('#colorplane-canvas').mousemove(function(e) {
         var hexColor = getHexColor(e);
-        showHexColor(hexColor);
+        $(this).showHexColor(hexColor);
 
         $('#colorplane-canvas').click(function() {
             saveCurrentColor(hexColor);
@@ -43,7 +43,7 @@ $(function(){
     });
 
     // This accepts the mouse or touch location and shows the current color based on X,Y coordinates
-    function getHexColor(e) {
+    getHexColor: function(e) {
         var canvasOffset = $(canvas).offset();
         var X = e.pageX - canvasOffset.left;
         var Y = e.pageY - canvasOffset.top;
@@ -60,7 +60,7 @@ $(function(){
         return hexColor;
     }
 
-    function showHexColor(hexColor) {
+    showHexColor: function(hexColor) {
         ctx.fillStyle = hexColor;
         ctx.fillRect(0,0,canvasWidth,canvasHeight);
         $('#colorplane-current-hex').html(hexColor);
@@ -71,7 +71,7 @@ $(function(){
     // to match the form field where you want the user to input a HEX color
     // For best results, hide the form field from the user so all they see
     // is the color that they have selected.
-    function saveCurrentColor(hexColor) {
+    saveCurrentColor: function(hexColor) {
         $('#colorplane-selected-hex').html(hexColor);
         $('#colorplane-selected-hex').css("color", hexColor);
         $('.colorplane-selected-color').css("background", hexColor);
@@ -79,7 +79,7 @@ $(function(){
     }
 
     // This insures that all values are acceptable for a HEX code
-    function normalizeHex(value) {
+    normalizeHex: function(value) {
         var hexLetters = { "10": "A",
                         "11": "B",
                         "12": "C",
