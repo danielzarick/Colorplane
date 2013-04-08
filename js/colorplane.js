@@ -48,15 +48,16 @@ $(function(){
         var X = e.pageX - canvasOffset.left;
         var Y = e.pageY - canvasOffset.top;
 
-        var canvasX = Math.floor(X);
+        // Divide X by 2 because the canvas is so wide. Play with these values if you want.
+        var canvasX = Math.floor(X/2);
         var canvasY = Math.floor(Y);
         var canvasZ = parseInt(canvasX.toString().slice(0,2)) + parseInt(canvasY.toString().slice(0,2));
 
-        var redHex = normalizeHex(Math.floor(canvasX/2));
-        var greenHex = normalizeHex(canvasY);
-        var blueHex = normalizeHex(canvasZ);
+        var red = normalizeHex(canvasX);
+        var green = normalizeHex(canvasY);
+        var blue = normalizeHex(canvasZ);
 
-        var hexColor = "#" + redHex + greenHex + blueHex;
+        var hexColor = "#" + red + green + blue;
         return hexColor;
     }
 

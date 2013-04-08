@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>Colorplane - a color picker for humans</title>
   <meta name="author" content="33cc77 - Daniel Zarick">
   <meta name="description" content="Colorplane - a color picker for humans.">
@@ -15,6 +16,9 @@
   <script src="js/colorplane.js" type="text/javascript"></script>
   <link href="css/colorplane-styles.css" media="all" rel="stylesheet" type="text/css" />
 
+  <!-- Remove this. This is the analytics for the demo page -->
+  <script src="js/analytics.js" type="text/javascript"></script>
+
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -24,7 +28,7 @@
   <div class="container">
   <div class="eight columns offset-by-four">
 
-    <div class="logo">
+    <div class="logo-colorplane">
       <img src="img/colorplane-header.png" />
     </div>
 
@@ -43,8 +47,8 @@
     <h3>Demo</h3>
 
     <ul class="colorplane-hex">
-      <li class="">Current: <span class="colorplane-hex-color" id="colorplane-current-hex">pick one</span></li>
-      <li class="">Selected: <span class="colorplane-hex-color" id="colorplane-selected-hex">pick one</span></li>
+      <li>Selected: <span class="colorplane-hex-color" id="colorplane-selected-hex">pick one</span></li>
+      <li>Current: <span class="colorplane-hex-color" id="colorplane-current-hex">pick one</span></li>
     </ul>
 
     <div class="colorplane">
@@ -61,20 +65,21 @@
     <h3>Examples</h3>
     <p>
       <h5>Green Room</h5>
-      <p>Colorplane was created for Green Room, a private group chat tool we built to share with our friends. Instead of avatars, users are represented only by a color. <a href="http://green.33cc77.com">(green.33cc77.com)</a></p>
+      <p>Colorplane was created for Green Room, a private group chat tool we built to share with our friends. Instead of avatars, users and rooms are represented only by a color. <a href="http://green.33cc77.com">(green.33cc77.com)</a></p>
       <img src="img/colorplane-greenroom.png" />
     </p>
 
     <div class="example">
       <h5>Svbtle</h5>
-      <p>Writers on Svbtle choose a color to represent their profile. In the past, writers had only a text field where they could input a HEX code. Now the writers can use a Colorplane to find just the right color. <a href="http://svbtle.com">(svbtle.com)</a></p>
+      <p>Writers on Svbtle choose a color to represent their profile. Colorplane helps them find just the right color. <a href="http://svbtle.com">(svbtle.com)</a></p>
       <img src="img/colorplane-svbtle.png" />
     </div>
 
     <hr />
 
     <footer>
-      Made by: <a href="http://33cc77.com"><img src="../../images/33cc77-logo-hover.png" /></a>
+      <p>Made by:</p>
+      <a class="logo-33cc77" href="http://33cc77.com">33cc77</a>
     </footer>
 
   </div>

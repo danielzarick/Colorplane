@@ -17,7 +17,6 @@
 
 .colorplane {
   margin: 1em 0;
-  width: 465px;
 }
 
 .colorplane-selected-color {
@@ -62,11 +61,12 @@ canvas#colorplane-canvas {
   border-radius: .4em;
 }
 
+
 /*
     Demo page styles
 */
 
-.logo {
+.logo-colorplane {
   margin: 2em 0 1em;
 }
 
@@ -77,13 +77,22 @@ canvas#colorplane-canvas {
 
 footer {
   margin: 3em auto;
-  width: 25%;
+  width: 7em;
+  color: #bbb;
   font-weight: bold;
-  font-size: 1.25em;
   text-align: center;
 }
 
-footer img {
-  width: 3.5em;
-  margin: .35em 0 0;
+.logo-33cc77 {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 1em 0;
+  padding: .1em .75em;
+  background: #33cc77;
+}
+
+.logo-33cc77:hover {
+  background-color: transparent;
+  text-decoration: none;
+  color: #333;
 }
