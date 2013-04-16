@@ -22,7 +22,7 @@ Writers on Svbtle choose a color to represent their profile. In the past, writer
 ****************************************
 
 ### Made by:
-[![33cc77 logo](http://33cc77.com/tools/colorplane/img/33cc77-logo-hover.png)](http://33cc77.com)
+[33cc77](http://33cc77.com/)
 
 ****************************************
 
