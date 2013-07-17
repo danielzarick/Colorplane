@@ -26,7 +26,7 @@
   border-radius: .4em .4em 0 0;
 }
 
-canvas#colorplane-canvas {
+.colorplane canvas {
   width: 100%;
   height: 220px;
   background: #33cc77;
