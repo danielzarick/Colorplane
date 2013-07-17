@@ -5,109 +5,120 @@
 //
 // *********************************
 
-$(function(){
-    var canvas = document.getElementById('colorplane-canvas');
-    var ctx = canvas.getContext('2d');
-    var canvasWidth = canvas.width;
-    var canvasHeight = canvas.height;
+(function($){
+  var ColorPlane = function(element, options) {
+    this.$el            = $(element || '<div />').addClass('colorplane');
+    this.$instructions  = $('<div class="colorplane-selected-color"><div class="colorplane-instructions">Click to select a color</div></div>')
+    this.$canvas        = $('<canvas />');
+    this.$color = this.$canvas.css("background");
+    this.context        = this.$canvas[0].getContext('2d');
+    this.options        = options || {};
 
-    // Set the default color for #colorplane-selected-color in your CSS or
-    // with a variable in your view template. Use this to match your brand
-    // or to fill it in with the already stored color.
-    var bkgndColor = $('.colorplane-selected-color').css("background-color");
-    ctx.fillStyle = bkgndColor;
-    ctx.fillRect(0,0,canvasWidth,canvasHeight);
+    this.render();
+  };
 
-    // Simplistic implementation to get the 'touchmove' event on a touchscreen
-    $('#colorplane-canvas').bind('touchmove', function(e) {
-        e.preventDefault();
-        var touch = e.originalEvent.changedTouches[0];
-        var hexColor = getHexColor(touch);
-        showHexColor(hexColor);
+  ColorPlane.fn = ColorPlane.prototype;
 
-        // This will save the current color when the 'touchmove' event ends,
-        // which happens when the finger is lifted or leaves the edge of the screen.
-        $('#colorplane-canvas').bind('touchend', function() {
-            saveCurrentColor(hexColor);
-        });
-    });
+  ColorPlane.fn.render = function(){
+    this.$el.html(this.$canvas);
+    this.$el.prepend(this.$instructions);
+    this.context.fillStyle = this.$color;
+    this.addListeners();
+  };
 
-    // This gets the mouse location (hopefully that is obvious)
-    $('#colorplane-canvas').mousemove(function(e) {
-        var hexColor = getHexColor(e);
-        showHexColor(hexColor);
+  ColorPlane.fn.addListeners = function() {
+    this.$canvas.bind('touchmove', function(e) {
+      e.preventDefault();
+      var touch    = e.originalEvent.changedTouches[0];
+      var hexColor = this.getHexColor(touch);
+      this.showColor(hexColor);
 
-        $('#colorplane-canvas').click(function() {
-            saveCurrentColor(hexColor);
-        });
-    });
+      this.$canvas.one('touchend', function() {
+        this.saveCurrentColor(hexColor);
+      }.bind(this));
+    }.bind(this));
 
-    // This accepts the mouse or touch location and shows the current color based on X,Y coordinates
-    function getHexColor(e) {
-        var canvasOffset = $(canvas).offset();
-        var X = e.pageX - canvasOffset.left;
-        var Y = e.pageY - canvasOffset.top;
+    this.$canvas.bind('mousemove', function(e) {
+      var hexColor = this.getHexColor(e);
+      this.showColor(hexColor);
 
-        // Divide X by 2 because the canvas is so wide. Play with these values if you want.
-        var canvasX = Math.floor(X/2);
-        var canvasY = Math.floor(Y);
-        var canvasZ = parseInt(canvasX.toString().slice(0,2)) + parseInt(canvasY.toString().slice(0,2));
+      this.$canvas.one('click', function() {
+        this.saveCurrentColor(hexColor);
+      }.bind(this));
+    }.bind(this));
+  };
 
-        var red = normalizeHex(canvasX);
-        var green = normalizeHex(canvasY);
-        var blue = normalizeHex(canvasZ);
+  ColorPlane.fn.getHexColor = function(e) {
+    var canvasOffset = this.$canvas.offset();
+    var X = e.pageX - canvasOffset.left;
+    var Y = e.pageY - canvasOffset.top;
 
-        var hexColor = "#" + red + green + blue;
-        return hexColor;
-    }
+    var canvasX = Math.floor(X/2);
+    var canvasY = Math.floor(Y);
 
-    function showHexColor(hexColor) {
-        ctx.fillStyle = hexColor;
-        ctx.fillRect(0,0,canvasWidth,canvasHeight);
-        $('#colorplane-current-hex').html(hexColor);
-        $('#colorplane-current-hex').css("color", hexColor);
-    }
+    var canvasZ = parseInt(canvasX.toString().slice(0,2)) +
+                  parseInt(canvasY.toString().slice(0,2));
 
-    // This is triggered on a mouse click or touchend. Change the IDs below
-    // to match the form field where you want the user to input a HEX color
-    // For best results, hide the form field from the user so all they see
-    // is the color that they have selected.
-    function saveCurrentColor(hexColor) {
-        $('#colorplane-selected-hex').html(hexColor);
-        $('#colorplane-selected-hex').css("color", hexColor);
-        $('.colorplane-selected-color').css("background", hexColor);
-        $('.colorplane-instructions').html("Color selected!");
-    }
-
-    // This insures that all values are acceptable for a HEX code
-    function normalizeHex(value) {
-        var hexLetters = { "10": "A",
-                        "11": "B",
-                        "12": "C",
-                        "13": "D",
-                        "14": "E",
-                        "15": "F" }
+      function normalizeHex(value) {
+        var hexLetters =  {
+                            "10": "A",
+                            "11": "B",
+                            "12": "C",
+                            "13": "D",
+                            "14": "E",
+                            "15": "F"
+                          }
 
         var value = value.toString();
 
         if (value.length === 1) {
 
-            value = "0" + value;
-            return value;
+          value = "0" + value;
+          return value;
 
         } else if (value.length === 3) {
 
-            value1 = value.slice(0,2);
-            if (hexLetters[value1]) {
-                value1 = hexLetters[value1];
-            } else {
-                value1 = "F";
-            }
-            value2 = value.slice(2,3);
-            return value1 + value2;
+          value1 = value.slice(0,2);
+          if (hexLetters[value1]) {
+            value1 = hexLetters[value1];
+          } else {
+            value1 = "F";
+          }
+          value2 = value.slice(2,3);
+          return value1 + value2;
 
         } else {
-            return value;
+          return value;
         }
-    }
+      }
+
+    return "#" + normalizeHex(canvasX) + normalizeHex(canvasY) + normalizeHex(canvasZ);
+  };
+
+  ColorPlane.fn.showColor = function(hexColor) {
+    this.context.fillStyle = hexColor;
+    this.context.fillRect(0,0, this.$canvas.width(), this.$canvas.height());
+
+    $('#colorplane-current-hex').html(hexColor);
+    $('#colorplane-current-hex').css("color", hexColor);
+  };
+
+  ColorPlane.fn.saveCurrentColor = function(hexColor) {
+    this.$el.trigger('change', hexColor);
+
+    $('#colorplane-selected-hex').html(hexColor);
+    $('#colorplane-selected-hex').css("color", hexColor);
+    $('.colorplane-selected-color').css("background", hexColor);
+    $('.colorplane-instructions').html("Color selected!");
+  };
+
+  $.fn.colorplane = function(options){
+    return $(this).each(function(){
+      $(this).data('colorplane', new ColorPlane(this, options));
+    });
+  };
+})(jQuery);
+
+jQuery(function($){
+  $('.colorplane').colorplane()
 });
