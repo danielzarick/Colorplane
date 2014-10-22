@@ -10,7 +10,7 @@
     this.$el            = $(element || '<div />').addClass('colorplane');
     this.$instructions  = $('<div class="colorplane-selected-color"><div class="colorplane-instructions">Click to select a color</div></div>')
     this.$canvas        = $('<canvas />');
-    this.$color = this.$canvas.css("background");
+    this.$color         = this.$canvas.css("background");
     this.context        = this.$canvas[0].getContext('2d');
     this.options        = options || {};
 
@@ -49,50 +49,18 @@
   };
 
   ColorPlane.fn.getHexColor = function(e) {
-    var canvasOffset = this.$canvas.offset();
-    var X = e.pageX - canvasOffset.left;
-    var Y = e.pageY - canvasOffset.top;
+    // var canvasOffset = this.$canvas.offset();
+    // var canvasX = e.pageX - canvasOffset.left;
+    // var canvasY = e.pageY - canvasOffset.top;
+    // var X =  Math.round((this.$canvas.width() - canvasX) / this.$canvas.width() * 100);
+    // var Y =  Math.round((this.$canvas.height() - canvasY) / this.$canvas.height()  * 100);
 
-    var canvasX = Math.floor(X/2);
-    var canvasY = Math.floor(Y);
-
-    var canvasZ = parseInt(canvasX.toString().slice(0,2)) +
-                  parseInt(canvasY.toString().slice(0,2));
-
-      function normalizeHex(value) {
-        var hexLetters =  {
-                            "10": "A",
-                            "11": "B",
-                            "12": "C",
-                            "13": "D",
-                            "14": "E",
-                            "15": "F"
-                          }
-
-        var value = value.toString();
-
-        if (value.length === 1) {
-
-          value = "0" + value;
-          return value;
-
-        } else if (value.length === 3) {
-
-          value1 = value.slice(0,2);
-          if (hexLetters[value1]) {
-            value1 = hexLetters[value1];
-          } else {
-            value1 = "F";
-          }
-          value2 = value.slice(2,3);
-          return value1 + value2;
-
-        } else {
-          return value;
-        }
-      }
-
-    return "#" + normalizeHex(canvasX) + normalizeHex(canvasY) + normalizeHex(canvasZ);
+    var X = Math.round(($('body').width() - e.pageX) / $('body').width() * 100);
+    var Y = Math.round((($('body').height() - e.pageY) / $('body').height()  * 100)/2+25);
+    var Z = Math.round(Y/4+80);
+    var HSL = tinycolor("hsl("+X+"%,"+Z+"%,"+Y+"%)");
+    var HEX = HSL.toHexString();
+    return HEX;
   };
 
   ColorPlane.fn.showColor = function(hexColor) {
@@ -109,7 +77,6 @@
     $('#colorplane-selected-hex').html(hexColor);
     $('#colorplane-selected-hex').css("color", hexColor);
     $('.colorplane-selected-color').css("background", hexColor);
-    $('.colorplane-instructions').html("Color selected!");
   };
 
   $.fn.colorplane = function(options){

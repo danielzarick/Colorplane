@@ -6,8 +6,9 @@ This color picker is for them.
 ## Demo
 [http://33cc77.com/tools/colorplane](http://33cc77.com/tools/colorplane)
 
-## Dependency
-jQuery (but you can easily edit it to use another library)
+## Dependencies
+[jQuery](http://jquery.com) (but you can easily edit it to use another library)
+[TinyColor](http://bgrins.github.io/TinyColor/)
 
 ## Examples
 
