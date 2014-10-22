@@ -49,15 +49,14 @@
   };
 
   ColorPlane.fn.getHexColor = function(e) {
-    // var canvasOffset = this.$canvas.offset();
-    // var canvasX = e.pageX - canvasOffset.left;
-    // var canvasY = e.pageY - canvasOffset.top;
-    // var X =  Math.round((this.$canvas.width() - canvasX) / this.$canvas.width() * 100);
-    // var Y =  Math.round((this.$canvas.height() - canvasY) / this.$canvas.height()  * 100);
+    var canvasOffset = this.$canvas.offset();
+    var canvasX = e.pageX - canvasOffset.left;
+    var canvasY = e.pageY - canvasOffset.top;
 
-    var X = Math.round(($('body').width() - e.pageX) / $('body').width() * 100);
-    var Y = Math.round((($('body').height() - e.pageY) / $('body').height()  * 100)/2+25);
+    var X = Math.round((this.$canvas.width() - canvasX) / this.$canvas.width() * 100);
+    var Y = Math.round(((this.$canvas.height() - canvasY) / this.$canvas.height()  * 100)/2+25);
     var Z = Math.round(Y/4+80);
+
     var HSL = tinycolor("hsl("+X+"%,"+Z+"%,"+Y+"%)");
     var HEX = HSL.toHexString();
     return HEX;
