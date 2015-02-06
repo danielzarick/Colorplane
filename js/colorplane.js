@@ -53,11 +53,14 @@
     var canvasX = e.pageX - canvasOffset.left;
     var canvasY = e.pageY - canvasOffset.top;
 
-    var X = Math.round((this.$canvas.width() - canvasX) / this.$canvas.width() * 100);
-    var Y = Math.round(((this.$canvas.height() - canvasY) / this.$canvas.height()  * 100)/2+25);
-    var Z = Math.round(Y/4+80);
+    var hue = Math.round((this.$canvas.width() - canvasX) / this.$canvas.width() * 100);
+    var lightness = Math.round(((this.$canvas.height() - canvasY) / this.$canvas.height()  * 100)/2+30);
+    var saturation = Math.round(((this.$canvas.height() - canvasY) / this.$canvas.height()  * 100)/2+35);
 
-    var HSL = tinycolor("hsl("+X+"%,"+Z+"%,"+Y+"%)");
+    var HSL = tinycolor("hsl("+hue+"%,"+saturation+"%,"+lightness+"%)");
+    $('#colorplane-current-hue').html(hue + "%");
+    $('#colorplane-current-satur').html(saturation + "%");
+    $('#colorplane-current-light').html(lightness + "%");
     var HEX = HSL.toHexString();
     return HEX;
   };
@@ -68,6 +71,7 @@
 
     $('#colorplane-current-hex').html(hexColor);
     $('#colorplane-current-hex').css("color", hexColor);
+    $('[id*="colorplane-current"]').css("color", hexColor);
   };
 
   ColorPlane.fn.saveCurrentColor = function(hexColor) {
