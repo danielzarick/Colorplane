@@ -8,8 +8,7 @@
 (function($){
   var ColorPlane = function(element, options) {
     this.$el            = $(element || '<div />').addClass('colorplane');
-    this.$instructions  = $('<div class="colorplane-selected-color"><div class="colorplane-instructions">Click to select a color</div></div>')
-    this.$canvas        = $('<canvas />');
+    this.$canvas        = $('<canvas height="280" width="380" />');
     this.$color         = this.$canvas.css("background");
     this.context        = this.$canvas[0].getContext('2d');
     this.options        = options || {};
@@ -21,7 +20,6 @@
 
   ColorPlane.fn.render = function(){
     this.$el.html(this.$canvas);
-    this.$el.prepend(this.$instructions);
     this.context.fillStyle = this.$color;
     this.addListeners();
   };
@@ -29,8 +27,10 @@
   ColorPlane.fn.addListeners = function() {
     this.$canvas.bind('touchmove', function(e) {
       e.preventDefault();
-      var touch    = e.originalEvent.changedTouches[0];
-      var hexColor = this.getHexColor(touch);
+      var e         = e.originalEvent;
+      var touch1    = e.targetTouches[0];
+      var touch2    = e.targetTouches[1];
+      var hexColor  = this.getHexColor(touch1, touch2);
       this.showColor(hexColor);
 
       this.$canvas.one('touchend', function() {
@@ -48,27 +48,59 @@
     }.bind(this));
   };
 
-  ColorPlane.fn.getHexColor = function(e) {
+  ColorPlane.fn.getHexColor = function(touch1, touch2) {
     var canvasOffset = this.$canvas.offset();
-    var canvasX = e.pageX - canvasOffset.left;
-    var canvasY = e.pageY - canvasOffset.top;
+    var canvasX = touch1.pageX - canvasOffset.left;
+    var canvasY = touch1.pageY - canvasOffset.top;
+    var xPosition = (this.$canvas.width() - canvasX) / this.$canvas.width() * 100;
     var yPosition = (this.$canvas.height() - canvasY) / this.$canvas.height()  * 100;
 
-    var hue = Math.round((this.$canvas.width() - canvasX) / this.$canvas.width() * 100);
-    var lightness = Math.round(yPosition / 3 + 35);
-    var saturation = Math.round(100 - (yPosition / 3 + 30));
+    var hue = Math.round(xPosition);
+    // var lightness = Math.round(yPosition);
+    // var saturation = 50;
+    var lightness = 80;
+    var saturation = Math.round(100 - yPosition);
 
-    var HSL = tinycolor("hsl("+hue+"%,"+saturation+"%,"+lightness+"%)");
+    if (touch2) {
+      var touch1X = canvasX;
+      var touch1Y = canvasY;
+      var touch2X = touch2.pageX - canvasOffset.left;
+      var touch2Y = touch2.pageY - canvasOffset.top;
+
+      output = Math.round(Math.sqrt( (touch2X-=touch1X)*touch2X + (touch2Y-=touch1Y)*touch2Y ));
+
+      lightness = Math.min(100 - Math.max(output - 100, 1), 100);
+    }
+
+    var HSL = tinycolor("hsv("+hue+"%,"+saturation+"%,"+lightness+"%)");
+    var HEX = HSL.toHexString();
+
+    this.context.fillStyle = HEX;
+    this.context.fillRect(0,0, this.$canvas.width(), this.$canvas.height());
+
+    this.context.beginPath();
+    this.context.arc(canvasX, canvasY, 6, 0, 2 * Math.PI, false);
+    this.context.lineWidth = 1;
+    this.context.strokeStyle = '#fff';
+    this.context.stroke();
+
+    if (touch2) {
+      this.context.beginPath();
+      this.context.arc(touch2X, touch2Y, 2, 0, 2 * Math.PI, false);
+      this.context.fillStyle = '#222';
+      this.context.fill();
+    }
+
     $('#colorplane-current-hue').html(hue + "%");
     $('#colorplane-current-satur').html(saturation + "%");
     $('#colorplane-current-light').html(lightness + "%");
-    var HEX = HSL.toHexString();
+
     return HEX;
   };
 
   ColorPlane.fn.showColor = function(hexColor) {
-    this.context.fillStyle = hexColor;
-    this.context.fillRect(0,0, this.$canvas.width(), this.$canvas.height());
+    // this.context.fillStyle = hexColor;
+    // this.context.fillRect(0,0, this.$canvas.width(), this.$canvas.height());
 
     $('#colorplane-current-hex').html(hexColor);
     $('#colorplane-current-hex').css("color", hexColor);
